@@ -147,37 +147,3 @@ if __name__ == '__main__':
                 img_output_path.mkdir(exist_ok=True, parents=True)
 
                 predict(model, file_names, args.batch_size, img_output_path, img_to(), img_back(), path_, i, False)
-
-'''
-                for i in range(r.shape[0]):
-                # v = np.fliplr(np.fliplr(np.squeeze(r[i])))
-                as_mask = do_threshold(r[i], threshold=0.5)
-                cv2.imwrite(str(img_output_path) + '/' + paths[i] + '_m.png', np.squeeze(as_mask) * 255)
-            print()
-
-                            for i in range(len(r)):
-                    # v = np.fliplr(np.fliplr(np.squeeze(r[i])))
-                    as_mask = do_threshold(r[i], threshold=0.5)
-                    cv2.imwrite(str(img_output_path) + '/' + paths[i] + str(i) + '_m.png',
-                                np.squeeze(as_mask[i]) * 255)
-
-
-            v = F.sigmoid(outputs).cpu().detach().numpy()
-
-            as_mask = np.squeeze(do_threshold(v[0], threshold=0.5))
-            cv2.imwrite(str('predict/images') + '/' + '_m.png',
-                        as_mask * 255)
-
-
-                as_mask = do_threshold(ret, threshold=0.5)
-                cv2.imwrite(str(img_output_path) + '_m.png', np.swapaxes(as_mask, 0, 2) * 255)
-                # cv2.imwrite(str('predict_train/') + paths[0][:-4] + '_i.png', np.squeeze(img.numpy().astype(np.uint8)))
-
-                def write_probs(probs, fold_name):
-                    with open(root_folder + '/fold_' + str(fold_name) + '/probs/' + ''.join(
-                            random.choices(string.ascii_letters + string.digits, k=6)).lower() + '.pickle', 'wb') as f:
-                        pickle.dump(probs, f)
-                def write_submission(df):
-                    df = pd.DataFrame.from_records(df, columns=['id', 'rle_mask'])
-                    df.to_csv(root_folder + '/predict/submission.csv', index=False)
-'''
