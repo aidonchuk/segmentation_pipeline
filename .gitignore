@@ -1,0 +1,6 @@
+.idea/
+data/
+runs/
+trained_models/
+predict/
+predict_train/
