@@ -139,7 +139,7 @@ def resnext50(num_classes=1000, pretrained=True, in_channels=3):
     """Constructs a ResNeXt-50 model."""
     model = ResNeXt(Bottleneck, 4, 32, [3, 4, 6, 3], num_classes=num_classes)
     if pretrained:
-        path = os.path.join(os.getenv("HOME"), '.torch/models/resnext50_nizhib.pth')
+        path = os.path.join(os.getenv("HOME"), '' )
         pretrained_parallel_state_dict = torch.load(path, map_location='cpu')['state_dict']
         pretrained_normal_state_dict = dict()
         for key in pretrained_parallel_state_dict.keys():
