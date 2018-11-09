@@ -52,7 +52,6 @@ def train(args, model, criterion, train_loader, valid_loader, validation, optimi
     for epoch in range(epoch, n_epochs + 1):
         model.train()
         random.seed()
-        scheduler.step(epoch)
         tq = tqdm.tqdm(total=(len(train_loader) * args.batch_size))
         tq.set_description('Epoch {}, lr {}'.format(epoch, optimizer.param_groups[0].get('lr')))
         losses = []
@@ -84,6 +83,7 @@ def train(args, model, criterion, train_loader, valid_loader, validation, optimi
             tq.close()
             save(epoch)
             valid_metrics = validation(model, criterion, valid_loader)
+            scheduler.step(valid_metrics['valid_loss'])
             write_event(log, step, epoch, **valid_metrics)
             valid_losses.append(valid_metrics['valid_loss'])
             valid_metric.append(float(valid_metrics['kaggel_metric']))
